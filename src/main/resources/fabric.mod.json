@@ -2,22 +2,22 @@
 	"schemaVersion": 1,
 	"id": "${id}",
 	"version": "${version}",
-	"name": "Elytra Trinket",
-	"description": "A Minecraft Fabric mod that adds the Elytra to the cape slot in the Trinkets API.",
+	"name": "Elytra Trinket Updated",
+	"description": "A Minecraft Fabric mod that adds the Elytra to the cape slot in the Trinkets API. Updated to version 1.21.10!",
 	"authors": [
 		{
-			"name": "Travis Martin",
+			"name": "Regexion",
 			"contact": {
-				"email": "travis@lakuna.pw",
-				"homepage": "https://www.lakuna.pw/"
+				"email": "...",
+				"homepage": "..."
 			}
 		}
 	],
 	"contact": {
-		"email": "travis@lakuna.pw",
-		"homepage": "https://www.lakuna.pw/",
-		"issues": "https://github.com/Lakuna/Minecraft-Elytra-Trinket/issues",
-		"sources": "https://github.com/Lakuna/Minecraft-Elytra-Trinket"
+		"email": "...",
+		"homepage": "...",
+		"issues": "https://github.com/marcel-strba/Minecraft-Elytra-Trinket/issues",
+		"sources": "https://github.com/marcel-strba/Minecraft-Elytra-Trinket"
 	},
 	"license": "MIT",
 	"icon": "assets/${id}/icon.png",

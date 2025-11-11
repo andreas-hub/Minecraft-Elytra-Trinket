@@ -1,10 +1,10 @@
-package pw.lakuna.elytra_trinket;
+package net.regexion.elytra_trinket_updated;
 
 import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.equipment.EquipmentModel;
 import net.minecraft.client.render.entity.equipment.EquipmentRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
@@ -67,8 +67,8 @@ public class ElytraTrinketFeatureRenderer<S extends BipedEntityRenderState, M ex
 	 * @param limbDistance The distance to the relevant limb.
 	 */
 	@Override
-	public void render(MatrixStack matrices, VertexConsumerProvider vertices, int light, S state, float limbAngle,
-			float limbDistance) {
+	public void render(MatrixStack matrices, OrderedRenderCommandQueue vertices, int light, S state, float limbAngle,
+                       float limbDistance) {
 		// Get the player entity state.
 		if (!(state instanceof PlayerEntityRenderState playerState)) {
 			return;
@@ -106,11 +106,17 @@ public class ElytraTrinketFeatureRenderer<S extends BipedEntityRenderState, M ex
 
 		// Get the texture of the Elytra.
 		Identifier identifier = null;
-		Identifier elytraTexture = playerState.skinTextures.elytraTexture();
+		Identifier elytraTexture = null;
+        Identifier capeTexture = null;
+        if(playerState.skinTextures.elytra() != null){
+            elytraTexture = playerState.skinTextures.elytra().texturePath();
+        }
 		if (elytraTexture != null) {
 			identifier = elytraTexture;
 		} else if (playerState.capeVisible) {
-			Identifier capeTexture = playerState.skinTextures.capeTexture();
+			if(playerState.skinTextures.cape() != null){
+                capeTexture = playerState.skinTextures.cape().texturePath();
+            }
 			if (capeTexture != null) {
 				identifier = capeTexture;
 			}
@@ -121,8 +127,8 @@ public class ElytraTrinketFeatureRenderer<S extends BipedEntityRenderState, M ex
 		matrices.push();
 		matrices.translate(0, 0, 0.125);
 		model.setAngles(state);
-		this.renderer.render(EquipmentModel.LayerType.WINGS, assetId, model, stack, matrices, vertices, light,
-				identifier);
+		this.renderer.render(EquipmentModel.LayerType.WINGS, assetId, model, state, stack, matrices, vertices, light,
+				identifier, state.outlineColor, 0);
 		matrices.pop();
 	}
 }

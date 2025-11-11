@@ -1,4 +1,4 @@
-package pw.lakuna.elytra_trinket;
+package net.regexion.elytra_trinket_updated;
 
 import net.fabricmc.api.ModInitializer;
 

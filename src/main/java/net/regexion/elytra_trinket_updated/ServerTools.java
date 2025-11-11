@@ -1,4 +1,4 @@
-package pw.lakuna.elytra_trinket;
+package net.regexion.elytra_trinket_updated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +47,8 @@ public final class ServerTools {
 		}
 
 		int nextRoll = entity.getGlidingTicks() + 1;
-		World world = entity.getWorld();
-		if (!world.isClient && nextRoll % 10 == 0) {
+		World world = entity.getEntityWorld();
+		if (!world.isClient() && nextRoll % 10 == 0) {
 			if ((nextRoll / 10) % 2 == 0) {
 				stack.damage(1, playerEntity);
 			}
