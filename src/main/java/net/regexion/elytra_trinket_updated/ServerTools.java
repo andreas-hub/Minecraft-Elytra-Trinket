@@ -19,10 +19,10 @@ import net.minecraft.world.event.GameEvent;
 /** Server- and client-side methods for Elytra Trinket. */
 public final class ServerTools {
 	/**
-	 * Determine whether or not the given item stack contains a usable Elytra.
+	 * Determine whether the given item stack contains a usable Elytra.
 	 * 
 	 * @param stack The item stack.
-	 * @return Whether or not the given item stack contains a usable Elytra.
+	 * @return Whether the given item stack contains a usable Elytra.
 	 */
 	private static boolean isUsableElytra(ItemStack stack) {
 		return stack != null && !stack.isEmpty() && !stack.shouldBreak() && !stack.willBreakNextUse()
@@ -59,7 +59,7 @@ public final class ServerTools {
 		return true;
 	}
 
-	/** Enable flight when wearing an Elytra in a cape trinket slot. */
+	/** Enable flight when wearing an Elytra in a back trinket slot. */
 	static void registerFlight() {
 		EntityElytraEvents.CUSTOM.register((entity, tickElytra) -> {
 			// If an equipped Elytra is usable, fly.

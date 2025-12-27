@@ -88,10 +88,10 @@ public class ElytraTrinketFeatureRenderer<S extends BipedEntityRenderState, M ex
 
 		// Get the stack of the Elytra trinket.
 		List<ItemStack> stacks = ServerTools.getEquippedElytraTrinkets(livingEntity);
-		if (stacks.size() < 1) {
+		if (stacks.isEmpty()) {
 			return;
 		}
-		ItemStack stack = stacks.get(0);
+		ItemStack stack = stacks.getFirst();
 
 		// Get the equippable component asset ID.
 		EquippableComponent equippableComponent = stack.get(DataComponentTypes.EQUIPPABLE);
