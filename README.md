@@ -8,3 +8,5 @@ This mod is just a fork of [Elytra Trinket Updated](https://github.com/marcel-st
 
 Updated to Minecraft version 1.21.11. I got tired of waiting for an update, so I did
 it myself.
+
+Changed slot from `CAPE` to `BACK`. To me back slot makes more sense.

@@ -31,11 +31,11 @@ public final class ServerTools {
 
 	/**
 	 * Make the given entity fly if the given Elytra is usable.
-	 * 
+	 *
 	 * @param entity The entity.
 	 * @param stack  The Elytra.
-	 * @param doTick Whether or not the Elytra should be checked on this tick.
-	 * @returns Whether or not the entity was made to fly.
+	 * @param doTick Whether the Elytra should be checked on this tick.
+	 * @return Whether  the entity was made to fly.
 	 */
 	private static boolean useElytraTrinket(LivingEntity entity, ItemStack stack, boolean doTick) {
 		if (!ServerTools.isUsableElytra(stack) || !(entity instanceof PlayerEntity playerEntity)) {
@@ -60,7 +60,7 @@ public final class ServerTools {
 	}
 
 	/** Enable flight when wearing an Elytra in a cape trinket slot. */
-	protected static void registerFlight() {
+	static void registerFlight() {
 		EntityElytraEvents.CUSTOM.register((entity, tickElytra) -> {
 			// If an equipped Elytra is usable, fly.
 			for (ItemStack stack : ServerTools.getEquippedElytraTrinkets(entity)) {
@@ -78,14 +78,14 @@ public final class ServerTools {
 	 * Get a list of equipped Elytra trinkets.
 	 * 
 	 * @param entity The entity that has the Elytra equipped.
-	 * @returns A list of equipped Elytra trinkets.
+	 * @return A list of equipped Elytra trinkets.
 	 */
 	public static List<ItemStack> getEquippedElytraTrinkets(LivingEntity entity) {
-		List<ItemStack> out = new ArrayList<ItemStack>();
+		List<ItemStack> out = new ArrayList<>();
 
 		// Return an empty list if the trinket component isn't present.
 		Optional<TrinketComponent> optional = TrinketsApi.getTrinketComponent(entity);
-		if (!optional.isPresent()) {
+		if (optional.isEmpty()) {
 			return out;
 		}
 
@@ -93,7 +93,7 @@ public final class ServerTools {
 		TrinketComponent trinketComponent = optional.get();
 		for (Pair<SlotReference, ItemStack> pair : trinketComponent.getEquipped(Items.ELYTRA)) {
 			// Skip slots that can't hold Elytra.
-			if (!pair.getLeft().inventory().getSlotType().getName().equals("cape")) {
+			if (!pair.getLeft().inventory().getSlotType().getName().equals("back")) {
 				continue;
 			}
 
@@ -110,13 +110,13 @@ public final class ServerTools {
 	}
 
 	/**
-	 * Determine whether or not the given entity is wearing an Elytra in a trinket
+	 * Determine whether the given entity is wearing an Elytra in a trinket
 	 * slot.
 	 * 
 	 * @param entity The entity to check.
-	 * @returns Whether or not the entity is wearing an Elytra in a trinket slot.
+	 * @return Whether the entity is wearing an Elytra in a trinket slot.
 	 */
 	public static boolean isElytraTrinketEquipped(LivingEntity entity) {
-		return ServerTools.getEquippedElytraTrinkets(entity).size() > 0;
+		return !ServerTools.getEquippedElytraTrinkets(entity).isEmpty();
 	}
 }
